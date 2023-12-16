@@ -47,7 +47,7 @@ int compareStrings(char *str1, char *str2);
 int stringLength(char *str);
 char *concatenateStrings(char *dest, char *src);
 char *copyString(char *dest, char *src);
-
+char *filterOutComments(char *sourceString);
 /* External environment variable from the OS */
 extern char **environ;
 
