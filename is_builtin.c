@@ -34,9 +34,13 @@ int *processStatus, int idx)
 		terminateShell(command, argv, processStatus, idx);
 	}
 	/* Check if the command is 'matchedEnv' and execute it. */
-	else if (compareStrings(command[0], "matchedEnv") == 0)
+	else if (compareStrings(command[0], "env") == 0)
 	{
 		displayEnvironmentVariables(command, processStatus);
+	}
+	else if (compareStrings(command[0], "setenv") == 0)
+	{
+		handle_Setenv(command, processStatus);
 	}
 }
 
