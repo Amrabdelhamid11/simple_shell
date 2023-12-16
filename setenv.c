@@ -31,7 +31,7 @@ int validate_SetEnvArgs(char **InputCmd, int *execStatus)
 {
 	if ((InputCmd[1] == NULL) || (InputCmd[2] == NULL) || (InputCmd[3] != NULL))
 	{
-		releaseMemory(InputCmd);
+		free2DArray(InputCmd);
 		*execStatus = 2;
 		return (1);
 	}
