@@ -30,6 +30,7 @@ int main(int argc, char **argv)
 		}
 		/* Increment the command count. */
 		i++;
+		userInput = filterOutComments(userInput);
 		/* Split the input into tokens (parsed command). */
 		parsedCommand = splitStringIntoTokens(userInput);
 		/* Continue to the next iteration if parsing failed. */
