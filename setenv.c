@@ -1,4 +1,4 @@
-#include "system_ops.h"
+#include "shell.h"
 
 /**
  * process_EnvSetting - Process the 'setenv' built-in command
