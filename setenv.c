@@ -1,55 +1,54 @@
-#include "shell.h"
+#include "system_ops.h"
 
 /**
- * handle_Setenv - Handle the setenv built-in command
+ * process_EnvSetting - Process the 'setenv' built-in command
  * Return: 1 if there's an error in the setenv input, 0 otherwise
- * @CMD: Array containing the user's input command
- * @stat: Pointer to the execution status
+ * @InputCmd: Array containing the user's input command
+ * @execStatus: Pointer to the execution status
  */
-int handle_Setenv(char **CMD, int *stat)
+int process_EnvSetting(char **InputCmd, int *execStatus)
 {
-	if (VSA(CMD, stat) == 1)
+	if (validate_SetEnvArgs(InputCmd, execStatus) == 1)
 	{
 		return (1);
 	}
-	if (SEV(CMD[1], CMD[2]) == -1)
+	if (apply_EnvChange(InputCmd[1], InputCmd[2]) == -1)
 	{
-		*stat = 2;
+		*execStatus = 2;
 		return (1);
 	}
-	free2DArray(CMD);
+	releaseMemory(InputCmd);
 	return (0);
 }
 
 /**
- * VSA - Validate the setenv arguments
+ * validate_SetEnvArgs - Check the validity of setenv arguments
  * Return: 1 if there's an error in the setenv input, 0 otherwise
- * @CMD: Array containing the user's input command
- * @stat: Pointer to the execution status
+ * @InputCmd: Array containing the user's input command
+ * @execStatus: Pointer to the execution status
  */
-int VSA(char **CMD, int *stat)
+int validate_SetEnvArgs(char **InputCmd, int *execStatus)
 {
-	if ((CMD[1] == NULL) || (CMD[2] == NULL) || (CMD[3] != NULL))
+	if ((InputCmd[1] == NULL) || (InputCmd[2] == NULL) || (InputCmd[3] != NULL))
 	{
-
-		free2DArray(CMD);
-		*stat = 2;
+		releaseMemory(InputCmd);
+		*execStatus = 2;
 		return (1);
 	}
 	return (0);
 }
 
 /**
- * SEV - Set an environment variable
+ * apply_EnvChange - Apply changes to an environment variable
  * Return: 0 on success, -1 on failure
- * @var: The environment variable to set
- * @val: The value to set for the environment variable
+ * @envVar: The environment variable to modify
+ * @envValue: The value to assign to the environment variable
  */
-int SEV(char *var, char *val)
+int apply_EnvChange(char *envVar, char *envValue)
 {
-	if (setenv(var, val, 1) == -1)
+	if (setenv(envVar, envValue, 1) == -1)
 	{
 		return (-1);
 	}
-	return (0);
+	return (0);
 }
