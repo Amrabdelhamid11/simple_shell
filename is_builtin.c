@@ -40,7 +40,7 @@ int *processStatus, int idx)
 	}
 	else if (compareStrings(command[0], "setenv") == 0)
 	{
-		handle_Setenv(command, processStatus);
+		process_EnvSetting(command, processStatus);
 	}
 }
 
