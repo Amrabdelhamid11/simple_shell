@@ -17,7 +17,7 @@ int process_EnvSetting(char **InputCmd, int *execStatus)
 		*execStatus = 2;
 		return (1);
 	}
-	releaseMemory(InputCmd);
+	free2DArray(InputCmd);
 	return (0);
 }
 
@@ -50,5 +50,6 @@ int apply_EnvChange(char *envVar, char *envValue)
 	{
 		return (-1);
 	}
-	return (0);
+	
+	return (0);
 }
