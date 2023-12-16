@@ -37,7 +37,7 @@ void displayError(char *name, char *parsedCommand, int idx)
 
 	char *index;
 	/*  Fixed a typo in the error message */
-	char errorMessage[] = ": it's notExist ";
+	char errorMessage[] = ": not found\n";
 
 	index = integer_to_string(idx);
 
