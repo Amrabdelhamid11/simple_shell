@@ -50,10 +50,12 @@ char *copyString(char *dest, char *src);
 char *filterOutComments(char *sourceString);
 /* External environment variable from the OS */
 extern char **environ;
-int VSA(char **CMD, int *stat);
-int SEV(char *var, char *val);
-int handle_Setenv(char **CMD, int *stat);
 /* Function prototypes for token counting and allocation in command parsing */
+
+int validate_SetEnvArgs(char **InputCmd, int *execStatus);
+int apply_EnvChange(char *envVar, char *envValue);
+int process_EnvSetting(char **InputCmd, int *execStatus);
+
 int count_tokens(char *line);
 char **allocate_tokens_array(int count);
 void populate_tokens_array(char **command, char *line);
